@@ -19,7 +19,7 @@ I hope you are healthy and doing great!
 
 I recently came across an open position of {position} role at {companyName}. With {yearsOfExperience} years of experience in HTML, CSS, JavaScript, React.JS, Next.JS {additionalSkills}, I believe I would be a strong candidate for this position as it aligns well with my skills.
 
-Would you be open to referring me for this position or heinglp me connect with the hiring team? I would appreciate it.
+Would you be open to referring me for this position or helping me connect with the hiring team? I would appreciate it.
 
 I have attached my resume and portfolio below for you to look over.
 
