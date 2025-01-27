@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import React, { useState } from "react";
 import {
@@ -12,7 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Copy } from "lucide-react";
+import { Copy, Send } from "lucide-react";
 import { EMAIL_TEMPLATES, getTemplateById } from "@/lib/email-templates";
 import clipboardCopy from "clipboard-copy";
 
@@ -26,6 +26,7 @@ export default function EmailGeneratorPage() {
     subject: "",
     body: "",
   });
+  const [recipientEmail, setRecipientEmail] = useState<string>("");
 
   const handleTemplateChange = (templateId: string) => {
     const template = getTemplateById(templateId);
@@ -70,6 +71,12 @@ export default function EmailGeneratorPage() {
     alert("Email copied to clipboard!");
   };
 
+  const generateMailToLink = () => {
+    const encodedSubject = encodeURIComponent(previewEmail.subject);
+    const encodedBody = encodeURIComponent(previewEmail.body);
+    return `mailto:${recipientEmail}?subject=${encodedSubject}&body=${encodedBody}`;
+  };
+
   return (
     <div className="container mx-auto p-6">
       <h1 className="text-3xl font-bold mb-6">Recruiter Email Generator</h1>
@@ -99,23 +106,37 @@ export default function EmailGeneratorPage() {
               </div>
 
               {/* Dynamic Input Fields */}
-              {selectedTemplateId &&
-                getTemplateById(selectedTemplateId)?.placeholders.map(
-                  (placeholder) => (
-                    <div key={placeholder}>
-                      <label className="block mb-2 capitalize">
-                        {placeholder.replace(/([A-Z])/g, " $1").toLowerCase()}
-                      </label>
-                      <Input
-                        value={emailData[placeholder] || ""}
-                        onChange={(e) =>
-                          handleInputChange(placeholder, e.target.value)
-                        }
-                        placeholder={`Enter ${placeholder}`}
-                      />
-                    </div>
-                  )
-                )}
+              {selectedTemplateId && (
+                <div>
+                  {getTemplateById(selectedTemplateId)?.placeholders.map(
+                    (placeholder) => (
+                      <div key={placeholder}>
+                        <label className="block mb-1 mt-2 capitalize">
+                          {placeholder.replace(/([A-Z])/g, " $1").toLowerCase()}
+                        </label>
+                        <Input
+                          value={emailData[placeholder] || ""}
+                          onChange={(e) =>
+                            handleInputChange(placeholder, e.target.value)
+                          }
+                          placeholder={`Enter ${placeholder}`}
+                        />
+                      </div>
+                    )
+                  )}
+                  <div>
+                    <label className="block mb-1 mt-2 capitalize">
+                      Recipient Email
+                    </label>
+                    <Input
+                      value={recipientEmail || ""}
+                      onChange={(e) => setRecipientEmail(e.target.value)}
+                      placeholder={`Enter recipient email address`}
+                      type="email"
+                    />
+                  </div>
+                </div>
+              )}
             </div>
           </CardContent>
         </Card>
@@ -142,6 +163,20 @@ export default function EmailGeneratorPage() {
                 </div>
                 <Button onClick={handleCopyToClipboard} className="mt-4 w-full">
                   <Copy className="mr-2 h-4 w-4" /> Copy Email
+                </Button>
+                <Button
+                  onClick={generateMailToLink}
+                  className="mt-4 w-full"
+                  disabled={!recipientEmail}
+                >
+                  <a
+                    href={generateMailToLink()}
+                    className="text-white py-2 flex justify-center text-center gap-2 rounded w-full"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Send className="mr-2 h-4 w-4" /> Open and Edit in Gmail
+                  </a>
                 </Button>
               </div>
             ) : (

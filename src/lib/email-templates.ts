@@ -23,7 +23,7 @@ Would you be open to referring me for this position or helping me connect with t
 
 I have attached my resume and portfolio below for you to look over.
 
-Resume: https://drive.google.com/file/d/1MDN3vimtiGFFmS8Gv9bZ0c5Y_D5mV5sR/view?usp=drivesdk 
+Resume: https://drive.google.com/file/d/1Ix2QIDau65O2ej7pt6RJGdWfAI4w5SsJ/view?usp=drive_link
 Portfolio: portfolio-bhaskarkrp.vercel.app
 
 Thank you for your time and support!
@@ -54,7 +54,7 @@ I'm particularly interested in {companyName}'s innovative work in {companyIndust
 
 I have attached my resume and portfolio below for you to look over and would love to have a brief conversation about potential opportunities.
 
-Resume: https://drive.google.com/file/d/1MDN3vimtiGFFmS8Gv9bZ0c5Y_D5mV5sR/view?usp=drivesdk 
+Resume: https://drive.google.com/file/d/1Ix2QIDau65O2ej7pt6RJGdWfAI4w5SsJ/view?usp=drive_link
 Portfolio: portfolio-bhaskarkrp.vercel.app
 
 I'm looking forward to hearing from you.
@@ -76,14 +76,14 @@ Warm regards,
     name: "Professional Follow-up",
     type: "follow-up",
     subject: "Follow-up: {position} Application at {companyName}",
-    body: `Dear {recipientName},
+    body: `Hi {recipientName},
   
-  I'm following up on my recent application for the {position} role at {companyName}. Given my {yearsOfExperience} years of experience in {additionalSkills}, I remain very excited about this opportunity.
+I wanted to follow up on my recent application for the {position} role at {companyName}. Given my {yearsOfExperience} years of experience in HTML, CSS, JavaScript, React.JS, Next.JS {additionalSkills}, I remain very excited about this opportunity.
   
-  I would appreciate any updates on the application status.
+I would appreciate any updates on the application status. Thank you for your consideration.
   
-  Best regards,
-  {senderName}`,
+Best regards,
+{senderName}`,
     placeholders: [
       "recipientName",
       "companyName",
