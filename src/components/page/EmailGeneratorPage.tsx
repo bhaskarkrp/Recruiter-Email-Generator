@@ -161,12 +161,17 @@ export default function EmailGeneratorPage() {
     }
   };
 
+  console.log({
+    selectedTemplateId,
+    isThere: [...EMAIL_TEMPLATES, ...ADMIN_EMAIL_TEMPLATES].find(
+      (temp) => temp.id !== selectedTemplateId
+    ),
+  });
+
   const handleDeleteTemplate = async (selectedTemplateId: string) => {
     try {
       await deleteTemplate(selectedTemplateId);
-      setSelectedTemplateId("");
-      setEmailData({});
-      setPreviewEmail({ subject: "", body: "" });
+      location.reload();
       setRecipientEmail("");
     } catch (error) {
       console.error("Error deleting template: ", error);
@@ -293,12 +298,15 @@ export default function EmailGeneratorPage() {
         <Card>
           <CardHeader className="flex flex-row justify-between items-center">
             <CardTitle>Email Preview</CardTitle>
-            {selectedTemplateId && (
-              <Trash2Icon
-                className="w-4 h-4 text-red-600 cursor-pointer"
-                onClick={() => handleDeleteTemplate(selectedTemplateId)}
-              />
-            )}
+            {selectedTemplateId &&
+              ![...EMAIL_TEMPLATES, ...ADMIN_EMAIL_TEMPLATES].find(
+                (temp) => temp.id === selectedTemplateId
+              ) && (
+                <Trash2Icon
+                  className="w-4 h-4 text-red-600 cursor-pointer"
+                  onClick={() => handleDeleteTemplate(selectedTemplateId)}
+                />
+              )}
           </CardHeader>
           <CardContent>
             {previewEmail.subject || previewEmail.body ? (

@@ -110,7 +110,7 @@ Best regards,
 
 export const ADMIN_EMAIL_TEMPLATES: EmailTemplate[] = [
   {
-    id: "default-temp-1",
+    id: "admin-default-temp-1",
     name: "Standard Job Referral [Default]",
     type: "job-referral",
     subject: "Referral Request for {position} Position at {companyName}",
@@ -141,7 +141,7 @@ Best regards,
     ],
   },
   {
-    id: "default-temp-2",
+    id: "admin-default-temp-2",
     name: "Professional Cold Outreach [Default]",
     type: "cold-email",
     subject: "Intrested in {position} Opportunities at {companyName}",
@@ -173,7 +173,7 @@ Warm regards,
     ],
   },
   {
-    id: "default-temp-3",
+    id: "admin-default-temp-3",
     name: "Professional Follow-up [Default]",
     type: "follow-up",
     subject: "Follow-up: {position} Application at {companyName}",
