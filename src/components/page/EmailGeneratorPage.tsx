@@ -82,14 +82,15 @@ export default function EmailGeneratorPage() {
       return [];
     } catch (error) {
       console.error("Error getting templates - ", error);
-      setAvailableTemplates(EMAIL_TEMPLATES);
     }
   };
 
   useEffect(() => {
-    getAllTemplates().then((templates) =>
-      setAvailableTemplates((prev) => [...EMAIL_TEMPLATES, ...templates])
-    );
+    getAllTemplates()
+      .then((templates) =>
+        setAvailableTemplates((prev) => [...EMAIL_TEMPLATES, ...templates])
+      )
+      .catch((err) => setAvailableTemplates(EMAIL_TEMPLATES));
   }, []);
 
   const updateAvailableTemplate = (newTemplate: EmailTemplate) => {
