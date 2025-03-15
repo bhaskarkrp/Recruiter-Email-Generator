@@ -12,7 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Copy, Send, LogOutIcon, PlusIcon } from "lucide-react";
+import { Copy, Send, LogOutIcon, PlusIcon, Trash2Icon } from "lucide-react";
 import {
   ADMIN_EMAIL_TEMPLATES,
   EMAIL_TEMPLATES,
@@ -21,7 +21,7 @@ import {
   RadioFilers,
 } from "@/lib/email-templates";
 import clipboardCopy from "clipboard-copy";
-import { getTemplates } from "@/lib/actions/template.actions";
+import { deleteTemplate, getTemplates } from "@/lib/actions/template.actions";
 import AddTemplateForm from "./AddTemplateForm";
 import { Template } from "@/types/appwrite.types";
 import Modal from "../ui/Modal";
@@ -80,17 +80,6 @@ export default function EmailGeneratorPage() {
       }
 
       return [];
-      // setAvailableTemplates((prev) => [
-      //   ...prev,
-      //   ...templates.map((temp: Template) => ({
-      //     id: temp.$id,
-      //     name: temp.name,
-      //     subject: temp.subject,
-      //     body: temp.body,
-      //     placeholders: temp.placeholders,
-      //     type: temp.type,
-      //   })),
-      // ]);
     } catch (error) {
       console.error("Error getting templates - ", error);
       setAvailableTemplates(EMAIL_TEMPLATES);
@@ -169,6 +158,18 @@ export default function EmailGeneratorPage() {
 
         setPreviewEmail({ subject: previewSubject, body: previewBody });
       }
+    }
+  };
+
+  const handleDeleteTemplate = async (selectedTemplateId: string) => {
+    try {
+      await deleteTemplate(selectedTemplateId);
+      setSelectedTemplateId("");
+      setEmailData({});
+      setPreviewEmail({ subject: "", body: "" });
+      setRecipientEmail("");
+    } catch (error) {
+      console.error("Error deleting template: ", error);
     }
   };
 
@@ -290,8 +291,14 @@ export default function EmailGeneratorPage() {
 
         {/* Email Preview */}
         <Card>
-          <CardHeader>
+          <CardHeader className="flex flex-row justify-between items-center">
             <CardTitle>Email Preview</CardTitle>
+            {selectedTemplateId && (
+              <Trash2Icon
+                className="w-4 h-4 text-red-600 cursor-pointer"
+                onClick={() => handleDeleteTemplate(selectedTemplateId)}
+              />
+            )}
           </CardHeader>
           <CardContent>
             {previewEmail.subject || previewEmail.body ? (

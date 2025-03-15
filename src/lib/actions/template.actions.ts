@@ -95,6 +95,7 @@ export const createTemplate = async ({ ...templateDetails }: Template) => {
     return parseStringify(newTemplate);
   } catch (error) {
     console.error("An error occurred while creating a new template:", error);
+    throw error;
   }
 };
 
@@ -103,7 +104,7 @@ export const getTemplates = async (userId?: string) => {
   try {
     const templates = await databases.listDocuments(
       DATABASE_ID!,
-      TEMPLATE_COLLECTION_ID!,
+      TEMPLATE_COLLECTION_ID!
       // userId ? [Query.equal("userId", [userId])] : undefined
     );
 
@@ -112,8 +113,23 @@ export const getTemplates = async (userId?: string) => {
     return parseStringify(templates.documents);
   } catch (error) {
     console.error(
-      "An error occurred while retrieving the patient details:",
+      "An error occurred while retrieving the template details:",
       error
     );
+    throw error;
+  }
+};
+
+// DELETE TEMPLATE
+export const deleteTemplate = async (templateId: string) => {
+  try {
+    return await databases.deleteDocument(
+      DATABASE_ID!,
+      TEMPLATE_COLLECTION_ID!,
+      templateId
+    );
+  } catch (error) {
+    console.error("An error occured while deleting template: ", error);
+    throw error;
   }
 };
