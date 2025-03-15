@@ -16,7 +16,17 @@ A simple and efficient **Recruiter Email Generator** that quickly helps job seek
 ---
 
 ## 🖥️ Tech Stack
-- Next.js, React, Tailwind CSS, Radix-ui, Lucide-react, Zod, Appwrite
+- Next.js, React, TypeScript, Tailwind CSS, Radix-ui, Lucide-react, Zod, Appwrite
+
+---
+
+## Glimpse
+![image](https://github.com/user-attachments/assets/973da03d-5596-4254-90df-24dbe856aa71)
+![image](https://github.com/user-attachments/assets/f2da969b-c003-4aee-b28a-271edaa29c3e)
+![image](https://github.com/user-attachments/assets/911b1683-c3d3-4967-816b-980bb4c2e661)
+![image](https://github.com/user-attachments/assets/78ec0601-576a-4e8e-a921-346ee29210af)
+![image](https://github.com/user-attachments/assets/31578c88-3934-4912-aeb9-c5d92734e6fd)
+
 
 ---
 
