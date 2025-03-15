@@ -117,6 +117,3 @@ export const getTemplates = async (userId?: string) => {
     );
   }
 };
-
-// associate template with user
-// give checkbox for only your template and all templtes

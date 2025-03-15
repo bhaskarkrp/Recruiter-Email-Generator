@@ -47,6 +47,7 @@ export default function EmailGeneratorPage() {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState<boolean>(false);
   const [showLoginForm, setShowLoginForm] = useState<boolean>(true);
   const [userSession, setUserSession] = useState<any>();
+  // const [selectedTemplate] = useState<string>("");
 
   let loggedInUserId: string | null = null;
   let loggedinuserSession: string | null = null;
@@ -111,6 +112,8 @@ export default function EmailGeneratorPage() {
     const template = getTemplateById(availableTemplates, templateId);
     if (template) {
       setSelectedTemplateId(templateId);
+      setPreviewEmail({ subject: "", body: "" });
+      setRecipientEmail("");
 
       // Reset email data based on template placeholders
       const initialData: { [key: string]: string } = {};
@@ -126,6 +129,7 @@ export default function EmailGeneratorPage() {
     setSelectedTemplateId("");
     setEmailData({});
     setPreviewEmail({ subject: "", body: "" });
+    setRecipientEmail("");
 
     switch (value) {
       case "all":
@@ -230,7 +234,10 @@ export default function EmailGeneratorPage() {
               {/* Template Selector */}
               <div>
                 <label className="block mb-2">Select Email Template</label>
-                <Select onValueChange={handleTemplateChange}>
+                <Select
+                  value={selectedTemplateId}
+                  onValueChange={handleTemplateChange}
+                >
                   <SelectTrigger>
                     <SelectValue placeholder="Choose a template" />
                   </SelectTrigger>
@@ -250,8 +257,8 @@ export default function EmailGeneratorPage() {
                   {getTemplateById(
                     availableTemplates,
                     selectedTemplateId
-                  )?.placeholders.map((placeholder) => (
-                    <div key={placeholder}>
+                  )?.placeholders.map((placeholder, index) => (
+                    <div key={placeholder + index}>
                       <label className="block mb-1 mt-2 capitalize">
                         {placeholder.replace(/([A-Z])/g, " $1").toLowerCase()}
                       </label>
@@ -287,7 +294,7 @@ export default function EmailGeneratorPage() {
             <CardTitle>Email Preview</CardTitle>
           </CardHeader>
           <CardContent>
-            {previewEmail.subject ? (
+            {previewEmail.subject || previewEmail.body ? (
               <div>
                 <div className="mb-4">
                   <strong>Subject:</strong>
