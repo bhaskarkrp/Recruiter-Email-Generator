@@ -54,7 +54,7 @@ Best regards,
     id: "default-temp-2",
     name: "Professional Cold Outreach [Default]",
     type: "cold-email",
-    subject: "Intrested in {position} Opportunities at {companyName}",
+    subject: "Interested in {position} Opportunities at {companyName}",
     body: `Hi {recipientName},
 
 I hope you are healthy and doing great! 
@@ -144,7 +144,7 @@ Best regards,
     id: "admin-default-temp-2",
     name: "Professional Cold Outreach [Default]",
     type: "cold-email",
-    subject: "Intrested in {position} Opportunities at {companyName}",
+    subject: "Interested in {position} Opportunities at {companyName}",
     body: `Hi {recipientName},
 
 I hope you are healthy and doing great! 
